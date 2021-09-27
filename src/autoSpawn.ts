@@ -8,10 +8,12 @@ const autoSpawn = ({ spawn, role, max }: AutoSpawnArgs) => {
   const creeps = _.filter(Game.creeps, (creep) => creep.memory.role === role);
   console.log(role + 's: ' + creeps.length);
 
-  if (creeps.length < max) {
+  if (creeps.length < max && !Game.spawns[spawn].spawning) {
     const newName = role + Game.time;
-    console.log('Spawning new ' + role + ': ' + newName);
-    Game.spawns[spawn].spawnCreep(getActions(role), newName, {memory: {role} as any});
+    const spawnResponse = Game.spawns[spawn].spawnCreep(getActions(role), newName, {memory: {role} as any});
+    if (spawnResponse !== ERR_NOT_ENOUGH_ENERGY) {
+      console.log('Spawning new ' + role + ': ' + newName);
+    }
   }
 
   if (Game.spawns[spawn].spawning) {
