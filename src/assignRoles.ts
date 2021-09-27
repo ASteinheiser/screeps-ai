@@ -1,4 +1,5 @@
 import { harvest, upgrade, build } from './roles';
+import { Role } from './types';
 
 const assignRoles = () => {
   for (const name in Game.creeps) {

@@ -1,5 +1,6 @@
 import { ErrorMapper } from 'utils/ErrorMapper';
 import executeColonyProtocol from './executeColonyProtocol';
+import { Role } from './types';
 
 declare global {
   /*
@@ -20,12 +21,6 @@ declare global {
     role: Role;
     room: string;
     working: boolean;
-  }
-
-  enum Role {
-    harvester = 'harvester',
-    builder = 'builder',
-    upgrader = 'upgrader',
   }
 
   // Syntax for adding proprties to `global` (ex "global.log")

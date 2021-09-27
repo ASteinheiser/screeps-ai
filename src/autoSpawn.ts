@@ -1,3 +1,5 @@
+import { Role } from './types';
+
 interface AutoSpawnArgs {
   spawn: string;
   role: Role;
