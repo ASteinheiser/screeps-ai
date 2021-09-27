@@ -3,8 +3,8 @@ import { upgrade } from 'role.upgrader';
 import { build } from 'role.builder';
 
 const assignRoles = () => {
-  for(var name in Game.creeps) {
-    var creep = Game.creeps[name];
+  for(const name in Game.creeps) {
+    const creep = Game.creeps[name];
 
     switch(creep.memory.role) {
       case 'harvester':
