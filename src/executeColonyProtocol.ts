@@ -7,7 +7,7 @@ const executeColonyProtocol = () => {
 
   assignRoles();
 
-  autoSpawn({ spawn: 'Spawn1', role: Role.harvester, max: 2 });
+  autoSpawn({ spawn: 'Spawn1', role: Role.harvester, max: 1 });
   autoSpawn({ spawn: 'Spawn1', role: Role.builder, max: 2 });
   autoSpawn({ spawn: 'Spawn1', role: Role.upgrader, max: 2 });
 }

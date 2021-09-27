@@ -1,12 +1,12 @@
 const PATH_COLOR = '#ffaa00';
 
 export const build = (creep: Creep) => {
-  if (creep.memory.working && creep.store[RESOURCE_ENERGY] == 0) {
+  if (creep.memory.working && creep.store[RESOURCE_ENERGY] === 0) {
     creep.memory.working = false;
     creep.say('🔄 harvest');
   }
 
-  if (!creep.memory.working && creep.store.getFreeCapacity() == 0) {
+  if (!creep.memory.working && creep.store.getFreeCapacity() === 0) {
     creep.memory.working = true;
     creep.say('🚧 build');
   }
