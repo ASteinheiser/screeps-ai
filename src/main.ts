@@ -1,4 +1,5 @@
 import { ErrorMapper } from "utils/ErrorMapper";
+import executeColonyProtocol from "./executeColonyProtocol";
 
 declare global {
   /*
@@ -40,4 +41,6 @@ export const loop = ErrorMapper.wrapLoop(() => {
       delete Memory.creeps[name];
     }
   }
+
+  executeColonyProtocol();
 });
