@@ -5,4 +5,5 @@ interface _Creep extends Creep {
 interface CreepMemory extends Memory {
   role: string;
   building?: boolean;
+  upgrading?: boolean;
 }
