@@ -5,11 +5,11 @@ const assignRoles = () => {
     const creep = Game.creeps[name];
 
     switch (creep.memory.role) {
-      case 'harvester':
+      case Role.harvester:
         harvest(creep);
-      case 'upgrader':
+      case Role.upgrader:
         upgrade(creep);
-      case 'builder':
+      case Role.builder:
         build(creep);
       default:
     }

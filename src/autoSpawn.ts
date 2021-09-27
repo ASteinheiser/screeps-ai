@@ -1,6 +1,6 @@
 interface AutoSpawnArgs {
   spawn: string;
-  role: string;
+  role: Role;
   max: number;
 }
 
@@ -30,9 +30,9 @@ export default autoSpawn;
 
 const getActions = (role: string) => {
   switch (role) {
-    case 'harvester':
-    case 'upgrader':
-    case 'builder':
+    case Role.harvester:
+    case Role.upgrader:
+    case Role.builder:
     default:
       return [WORK, CARRY, MOVE];
   }

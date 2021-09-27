@@ -1,5 +1,5 @@
-import { ErrorMapper } from "utils/ErrorMapper";
-import executeColonyProtocol from "./executeColonyProtocol";
+import { ErrorMapper } from 'utils/ErrorMapper';
+import executeColonyProtocol from './executeColonyProtocol';
 
 declare global {
   /*
@@ -17,9 +17,15 @@ declare global {
   }
 
   interface CreepMemory {
-    role: string;
+    role: Role;
     room: string;
     working: boolean;
+  }
+
+  enum Role {
+    harvester = 'harvester',
+    builder = 'builder',
+    upgrader = 'upgrader',
   }
 
   // Syntax for adding proprties to `global` (ex "global.log")
