@@ -1,3 +1,5 @@
+import { Role } from './types';
+
 interface AutoSpawnArgs {
   spawn: string;
   role: Role;
@@ -6,7 +8,7 @@ interface AutoSpawnArgs {
 
 const autoSpawn = ({ spawn, role, max }: AutoSpawnArgs) => {
   const creeps = _.filter(Game.creeps, (creep) => creep.memory.role === role);
-  console.log(role + 's: ' + creeps.length);
+  console.log(role + 's: [' + creeps.length + '/' + max + ']');
 
   if (creeps.length < max && !Game.spawns[spawn].spawning) {
     const newName = role + Game.time;

@@ -1,5 +1,6 @@
 import assignRoles from './assignRoles';
 import autoSpawn from './autoSpawn';
+import { Role } from './types';
 
 const executeColonyProtocol = () => {
   console.log('executing colony protocols...');
