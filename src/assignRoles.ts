@@ -1,6 +1,4 @@
-import { harvest } from 'role.harvester';
-import { upgrade } from 'role.upgrader';
-import { build } from 'role.builder';
+import { harvest, upgrade, build } from './roles';
 
 const assignRoles = () => {
   for(const name in Game.creeps) {
