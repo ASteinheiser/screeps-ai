@@ -12,14 +12,14 @@ export const harvest = (creep: Creep) => {
   }
 }
 
-const findResource = (creep: Creep) => {
+export const findResource = (creep: Creep) => {
   const sources = creep.room.find(FIND_SOURCES);
   if (creep.harvest(sources[0]) === ERR_NOT_IN_RANGE) {
       creep.moveTo(sources[0], {visualizePathStyle: {stroke: PATH_COLOR}});
   }
 }
 
-const findTargetsForDeposit = (creep: Creep) => {
+export const findTargetsForDeposit = (creep: Creep) => {
   return creep.room.find(FIND_STRUCTURES, {
     filter: (structure) => {
       return (structure.structureType === STRUCTURE_EXTENSION ||
@@ -30,7 +30,7 @@ const findTargetsForDeposit = (creep: Creep) => {
   });
 }
 
-const depositResource = (creep: Creep, target: Structure) => {
+export const depositResource = (creep: Creep, target: Structure) => {
   if (creep.transfer(target, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
     creep.moveTo(target, {visualizePathStyle: {stroke: PATH_COLOR}});
   }
