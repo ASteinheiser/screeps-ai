@@ -7,13 +7,13 @@ const assignRoles = () => {
 
     switch (creep.memory.role) {
       case Role.harvester:
-        return harvest(creep);
+        harvest(creep);
       case Role.upgrader:
-        return upgrade(creep);
+        upgrade(creep);
       case Role.builder:
-        return build(creep);
+        build(creep);
       default:
-        return harvest(creep);
+        harvest(creep);
     }
   }
 }
