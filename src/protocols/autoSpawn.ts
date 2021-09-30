@@ -1,5 +1,5 @@
 import { Role } from '../types';
-import { Protocol } from './protocol';
+import { Protocol } from '../protocol';
 
 interface AutoSpawnArgs {
   spawnName: string;

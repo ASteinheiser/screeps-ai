@@ -1,4 +1,4 @@
-import { Protocol } from './protocol';
+import { Protocol } from '../protocol';
 
 const showSpawnMessages: Protocol = () => {
   for (const spawnName in Game.spawns) {

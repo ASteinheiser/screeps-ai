@@ -1,4 +1,4 @@
-import { executeProtocols } from './protocols/protocol';
+import { executeProtocols } from './protocol';
 import assignRoles from './protocols/assignRoles';
 import autoSpawn from './protocols/autoSpawn';
 import showSpawnMessages from './protocols/showSpawnMessages';
