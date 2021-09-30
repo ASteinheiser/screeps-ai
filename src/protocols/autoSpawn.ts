@@ -16,24 +16,11 @@ const autoSpawn: Protocol = ({ spawnName, role, max }: AutoSpawnArgs) => {
   if (creeps.length < max && !Game.spawns[spawnName].spawning) {
     spawnNewScreep(spawnName, role);
   }
-  if (Game.spawns[spawnName].spawning) {
-    showSpawningMessage(spawnName);
-  }
 
   return creeps.length >= max;
 }
 
 export default autoSpawn;
-
-const getActions = (role: string) => {
-  switch (role) {
-    case Role.harvester:
-    case Role.upgrader:
-    case Role.builder:
-    default:
-      return [WORK, CARRY, MOVE];
-  }
-}
 
 const spawnNewScreep = (spawnName: string, role: string) => {
   const spawn = Game.spawns[spawnName];
@@ -44,11 +31,12 @@ const spawnNewScreep = (spawnName: string, role: string) => {
   }
 }
 
-const showSpawningMessage = (spawnName: string) => {
-  const spawningCreep = Game.creeps[Game.spawns[spawnName].spawning?.name || ''];
-  Game.spawns[spawnName].room.visual.text(
-    '👹' + spawningCreep.memory.role + '👺',
-    Game.spawns[spawnName].pos.x + 1,
-    Game.spawns[spawnName].pos.y,
-    {align: 'left', opacity: 0.8});
+const getActions = (role: string) => {
+  switch (role) {
+    case Role.harvester:
+    case Role.upgrader:
+    case Role.builder:
+    default:
+      return [WORK, CARRY, MOVE];
+  }
 }
