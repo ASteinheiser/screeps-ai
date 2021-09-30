@@ -9,7 +9,9 @@ interface AutoSpawnArgs {
 
 const autoSpawn: Protocol = ({ spawnName, role, max }: AutoSpawnArgs) => {
   const creeps = _.filter(Game.creeps, (creep) => creep.memory.role === role);
-  console.log(role + 's: [' + creeps.length + '/' + max + ']');
+  if (creeps.length <= max) {
+    console.log(role + 's: [' + creeps.length + '/' + max + ']');
+  }
 
   if (creeps.length < max && !Game.spawns[spawnName].spawning) {
     spawnNewScreep(spawnName, role);
