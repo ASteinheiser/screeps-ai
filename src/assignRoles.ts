@@ -1,7 +1,10 @@
 import { harvest, upgrade, build } from './roles';
 import { Role } from './types';
+import { Protocol } from './protocol';
 
-const assignRoles = () => {
+const assignRoles: Protocol = () => {
+  console.log('assigning roles...');
+
   for (const name in Game.creeps) {
     const creep = Game.creeps[name];
 
@@ -16,6 +19,7 @@ const assignRoles = () => {
         harvest(creep);
     }
   }
+  return true;
 }
 
 export default assignRoles;

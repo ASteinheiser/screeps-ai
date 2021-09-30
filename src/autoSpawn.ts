@@ -1,4 +1,5 @@
 import { Role } from './types';
+import { Protocol } from './protocol';
 
 interface AutoSpawnArgs {
   spawnName: string;
@@ -6,17 +7,18 @@ interface AutoSpawnArgs {
   max: number;
 }
 
-const autoSpawn = ({ spawnName, role, max }: AutoSpawnArgs) => {
+const autoSpawn: Protocol = ({ spawnName, role, max }: AutoSpawnArgs) => {
   const creeps = _.filter(Game.creeps, (creep) => creep.memory.role === role);
   console.log(role + 's: [' + creeps.length + '/' + max + ']');
 
   if (creeps.length < max && !Game.spawns[spawnName].spawning) {
     spawnNewScreep(spawnName, role);
   }
-
   if (Game.spawns[spawnName].spawning) {
     showSpawningMessage(spawnName);
   }
+
+  return creeps.length >= max;
 }
 
 export default autoSpawn;
