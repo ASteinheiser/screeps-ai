@@ -1,4 +1,4 @@
-import { Role } from './types';
+import { Role } from '../types';
 import { Protocol } from './protocol';
 
 interface AutoSpawnArgs {

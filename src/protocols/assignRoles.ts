@@ -1,5 +1,5 @@
-import { harvest, upgrade, build } from './roles';
-import { Role } from './types';
+import { harvest, upgrade, build } from '../roles';
+import { Role } from '../types';
 import { Protocol } from './protocol';
 
 const assignRoles: Protocol = () => {

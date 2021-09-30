@@ -1,6 +1,6 @@
-import { executeProtocols } from './protocol';
-import assignRoles from './assignRoles';
-import autoSpawn from './autoSpawn';
+import { executeProtocols } from './protocols/protocol';
+import assignRoles from './protocols/assignRoles';
+import autoSpawn from './protocols/autoSpawn';
 
 const executeColonyProtocol = () => {
   console.log('executing colony protocols...');
@@ -10,6 +10,9 @@ const executeColonyProtocol = () => {
     () => autoSpawn({ spawnName: 'Spawn1', role: 'harvester', max: 2 }),
     () => autoSpawn({ spawnName: 'Spawn1', role: 'builder', max: 2 }),
     () => autoSpawn({ spawnName: 'Spawn1', role: 'upgrader', max: 2 }),
+    () => autoSpawn({ spawnName: 'Spawn1', role: 'harvester', max: 4 }),
+    () => autoSpawn({ spawnName: 'Spawn1', role: 'builder', max: 4 }),
+    () => autoSpawn({ spawnName: 'Spawn1', role: 'upgrader', max: 4 }),
   ]);
 }
 
