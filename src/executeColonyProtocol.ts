@@ -14,7 +14,7 @@ const executeColonyProtocol = () => {
     () => autoSpawn({ spawnName: 'Spawn1', role: 'harvester', max: 4 }),
     () => autoSpawn({ spawnName: 'Spawn1', role: 'builder', max: 4 }),
     () => autoSpawn({ spawnName: 'Spawn1', role: 'upgrader', max: 4 }),
-    () => showSpawnMessages(),
+    showSpawnMessages,
   ]);
 }
 
