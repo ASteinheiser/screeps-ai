@@ -1,34 +1,48 @@
-import { Role, Body, BodyKey, BodyType } from '../types';
+import { Role, Body } from '../types';
 import { Protocol } from '../protocol';
 
 interface AutoSpawnArgs {
   spawnName: string;
   role: Role;
   max: number;
-  bodyName: BodyKey;
+  bodyName: keyof typeof Body;
 }
 
-const autoSpawn: Protocol = ({ spawnName, role, max, bodyName }: AutoSpawnArgs) => {
-  const { cost, body } = Body[bodyName];
+export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max, bodyName }) => {
+  const spawn = Game.spawns[spawnName];
+  const body = getHighestCostBody(spawn, [...Body[bodyName]]);
 
   const creeps = _.filter(Game.creeps, (creep) => creep.memory.role === role);
   if (creeps.length <= max) {
     console.log(role + 's: [' + creeps.length + '/' + max + ']');
   }
 
-  if (creeps.length < max && !Game.spawns[spawnName].spawning) {
-    spawnNewScreep(spawnName, role, body);
+  if (body && creeps.length < max && !spawn.spawning) {
+    spawnNewScreep(spawn, role, body);
   }
 
   return creeps.length >= max;
 }
 
-export default autoSpawn;
-
-const spawnNewScreep = (spawnName: string, role: string, body: BodyType['body']) => {
-  const spawn = Game.spawns[spawnName];
+const spawnNewScreep = (spawn: StructureSpawn, role: Role, body: BodyPartConstant[]) => {
   const name = role + Game.time;
-  if (spawn.spawnCreep(body, name, {memory: {role} as any}) === OK) {
+  const memory = { role, room: spawn.room.name, working: false };
+
+  if (spawn.spawnCreep(body, name, { memory }) === OK) {
     console.log('Spawning new ' + role + ': ' + name);
+  }
+}
+
+const getHighestCostBody = (
+  spawn: StructureSpawn,
+  bodies: typeof Body[keyof typeof Body]
+): BodyPartConstant[] | undefined => {
+  const currentBody = bodies.shift();
+  if (!currentBody) return undefined;
+
+  if (spawn.room.energyCapacityAvailable >= currentBody.cost) {
+    return currentBody.body;
+  } else {
+    return getHighestCostBody(spawn, bodies);
   }
 }
