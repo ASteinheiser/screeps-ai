@@ -2,12 +2,14 @@ import { Protocol } from '../protocol';
 
 export const showSpawnMessages: Protocol = () => {
   for (const spawnName in Game.spawns) {
-    if (Game.spawns[spawnName].spawning) {
-      const spawningCreep = Game.creeps[Game.spawns[spawnName].spawning?.name || ''];
-      Game.spawns[spawnName].room.visual.text(
+    const spawn = Game.spawns[spawnName];
+
+    if (spawn.spawning) {
+      const spawningCreep = Game.creeps[spawn.spawning?.name || ''];
+      spawn.room.visual.text(
         '👹' + spawningCreep.memory.role + '👺',
-        Game.spawns[spawnName].pos.x + 1,
-        Game.spawns[spawnName].pos.y,
+        spawn.pos.x + 1,
+        spawn.pos.y,
         {align: 'left', opacity: 0.8});
     }
   }
