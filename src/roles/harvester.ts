@@ -1,7 +1,7 @@
 const PATH_COLOR = '#ffea00';
 
 export const harvest = (creep: Creep) => {
-  if (creep.store.getUsedCapacity(RESOURCE_ENERGY) === 0) {
+  if (creep.store[RESOURCE_ENERGY] === 0) {
     findResource(creep);
   }
   else {
