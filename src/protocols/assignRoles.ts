@@ -2,7 +2,7 @@ import { harvest, upgrade, build } from '../roles';
 import { Role } from '../types';
 import { Protocol } from '../protocol';
 
-const assignRoles: Protocol = () => {
+export const assignRoles: Protocol = () => {
   console.log('assigning roles...');
 
   for (const name in Game.creeps) {
@@ -21,5 +21,3 @@ const assignRoles: Protocol = () => {
   }
   return true;
 }
-
-export default assignRoles;

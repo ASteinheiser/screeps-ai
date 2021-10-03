@@ -1,6 +1,6 @@
 import { Protocol } from '../protocol';
 
-const showSpawnMessages: Protocol = () => {
+export const showSpawnMessages: Protocol = () => {
   for (const spawnName in Game.spawns) {
     if (Game.spawns[spawnName].spawning) {
       const spawningCreep = Game.creeps[Game.spawns[spawnName].spawning?.name || ''];
@@ -13,5 +13,3 @@ const showSpawnMessages: Protocol = () => {
   }
   return true;
 }
-
-export default showSpawnMessages;
