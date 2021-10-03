@@ -30,9 +30,3 @@ const spawnNewScreep = (spawnName: string, role: string) => {
     console.log('Spawning new ' + role + ': ' + name);
   }
 }
-
-// export const ActionKit = {
-//   worker_v1: [WORK, CARRY, MOVE],
-//   worker_v2: [WORK, WORK, CARRY, MOVE, MOVE],
-//   worker_v3: [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE],
-// }
