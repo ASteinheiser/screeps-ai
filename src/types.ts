@@ -18,3 +18,6 @@ export const Body = {
     body: [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
   },
 }
+
+export type BodyKey = keyof typeof Body;
+export type BodyType = typeof Body[BodyKey];
