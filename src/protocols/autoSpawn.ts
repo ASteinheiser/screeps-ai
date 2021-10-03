@@ -24,19 +24,15 @@ export default autoSpawn;
 
 const spawnNewScreep = (spawnName: string, role: string) => {
   const spawn = Game.spawns[spawnName];
-  const newName = role + Game.time;
-  const actions = getActions(role);
-  if (spawn.spawnCreep(actions, newName, {memory: {role} as any}) === OK) {
-    console.log('Spawning new ' + role + ': ' + newName);
+  const name = role + Game.time;
+  const actions = [WORK, CARRY, MOVE];
+  if (spawn.spawnCreep(actions, name, {memory: {role} as any}) === OK) {
+    console.log('Spawning new ' + role + ': ' + name);
   }
 }
 
-const getActions = (role: string) => {
-  switch (role) {
-    case Role.harvester:
-    case Role.upgrader:
-    case Role.builder:
-    default:
-      return [WORK, CARRY, MOVE];
-  }
-}
+// export const ActionKit = {
+//   worker_v1: [WORK, CARRY, MOVE],
+//   worker_v2: [WORK, WORK, CARRY, MOVE, MOVE],
+//   worker_v3: [WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE],
+// }
