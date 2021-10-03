@@ -5,19 +5,18 @@ export enum Role {
 }
 
 export const Body = {
-  worker_v1: {
-    cost: 200,
-    body: [WORK, CARRY, MOVE],
-  },
-  worker_v2: {
-    cost: 400,
-    body: [WORK, WORK, CARRY, MOVE, MOVE, MOVE],
-  },
-  worker_v3: {
-    cost: 800,
-    body: [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
-  },
+  worker: [
+    {
+      cost: 800,
+      body: [WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE],
+    },
+    {
+      cost: 400,
+      body: [WORK, WORK, CARRY, MOVE, MOVE, MOVE],
+    },
+    {
+      cost: 200,
+      body: [WORK, CARRY, MOVE],
+    },
+  ],
 }
-
-export type BodyKey = keyof typeof Body;
-export type BodyType = typeof Body[BodyKey];
