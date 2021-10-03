@@ -4,7 +4,7 @@ export enum Role {
   upgrader = 'upgrader',
 }
 
-export const ActionKit = {
+export const Body = {
   worker_v1: {
     cost: 200,
     body: [WORK, CARRY, MOVE],
