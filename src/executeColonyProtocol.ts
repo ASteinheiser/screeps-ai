@@ -8,10 +8,9 @@ const executeColonyProtocol = () => {
   // protocols for spawning colony creeps
   for (const spawnName in Game.spawns) {
     executeProtocols([
-      () => autoSpawn({ spawnName, role: Role.harvester, max: 1, bodyName: 'worker' }),
+      () => autoSpawn({ spawnName, role: Role.harvester, max: 2, bodyName: 'worker' }),
       () => autoSpawn({ spawnName, role: Role.upgrader, max: 1, bodyName: 'worker' }),
 
-      () => autoSpawn({ spawnName, role: Role.harvester, max: 2, bodyName: 'worker' }),
       () => autoSpawn({ spawnName, role: Role.builder, max: 2, bodyName: 'worker' }),
       () => autoSpawn({ spawnName, role: Role.upgrader, max: 2, bodyName: 'worker' }),
 
