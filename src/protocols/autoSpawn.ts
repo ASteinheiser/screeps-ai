@@ -5,12 +5,11 @@ interface AutoSpawnArgs {
   spawnName: string;
   role: Role;
   max: number;
-  bodyName: keyof typeof Body;
 }
 
-export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max, bodyName }) => {
+export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max }) => {
   const spawn = Game.spawns[spawnName];
-  const body = getHighestCostBody(spawn, [...Body[bodyName]]);
+  const body = getHighestCostBody(spawn, [...Body[role]]);
 
   const creeps = _.filter(Game.creeps, ({ memory }) => (
     memory.role === role && memory.room === spawn.room.name
