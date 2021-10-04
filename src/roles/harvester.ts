@@ -30,7 +30,7 @@ export const findResource = (creep: Creep) => {
 }
 
 export const findTargetsForDeposit = (creep: Creep) => {
-  return creep.room.find(FIND_STRUCTURES, {
+  const structures = creep.room.find(FIND_STRUCTURES, {
     filter: (structure) => {
       return (structure.structureType === STRUCTURE_EXTENSION ||
               structure.structureType === STRUCTURE_SPAWN ||
@@ -38,6 +38,8 @@ export const findTargetsForDeposit = (creep: Creep) => {
               structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
     }
   });
+  // fill up extensions before spawn as the spawn will regenerate energy
+  return _.sortBy(structures, s => s.structureType !== STRUCTURE_SPAWN);
 }
 
 export const depositResource = (creep: Creep, target: Structure) => {
