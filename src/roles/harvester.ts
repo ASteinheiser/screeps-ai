@@ -48,7 +48,7 @@ export const findTargetsForDeposit = (creep: Creep) => {
     }
   });
   // fill up extensions before spawn as the spawn will regenerate energy
-  return _.sortBy(structures, s => s.structureType !== STRUCTURE_SPAWN);
+  return _.sortBy(structures, s => s.structureType === STRUCTURE_SPAWN ? 1 : 0);
 }
 
 export const depositResource = (creep: Creep, target: Structure) => {
