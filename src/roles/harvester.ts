@@ -5,7 +5,7 @@ export const harvest = (creep: Creep) => {
     creep.memory.working = false;
     creep.say('🗑️ deposit');
   }
-  if (!creep.memory.working && creep.store.getFreeCapacity() > 0) {
+  if (!creep.memory.working && creep.store.getUsedCapacity() === 0) {
     creep.memory.working = true;
     creep.say('⛏️ harvest');
   }

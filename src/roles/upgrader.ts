@@ -3,7 +3,7 @@ import { findResource } from './harvester';
 const PATH_COLOR = '#ffaa00';
 
 export const upgrade = (creep: Creep) => {
-  if (creep.memory.working && creep.store.getFreeCapacity() > 0) {
+  if (creep.memory.working && creep.store.getUsedCapacity() === 0) {
     creep.memory.working = false;
     creep.say('⛏️ harvest');
   }
