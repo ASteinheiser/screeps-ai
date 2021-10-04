@@ -1,5 +1,13 @@
 import { Role } from '../../src/roles/constants';
-import { generateBodyParts } from '../../src/roles/generateBodyParts';
+import { generateBodyParts, generateParts } from '../../src/roles/generateBodyParts';
+
+describe('generateParts', () => {
+  it('should generate the correct amount of parts', () => {
+    const actual = generateParts(WORK, 4);
+    const expected = [WORK, WORK, WORK, WORK];
+    chai.expect(actual).to.deep.equal(expected);
+  });
+});
 
 describe('generateBodyParts', () => {
   describe('Role.harvester', () => {

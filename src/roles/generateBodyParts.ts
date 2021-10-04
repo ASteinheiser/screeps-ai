@@ -1,6 +1,6 @@
 import { Role, MAX_CREEP_COST } from './constants';
 
-const generateParts = (part: BodyPartConstant, count: number) => {
+export const generateParts = (part: BodyPartConstant, count: number) => {
   return [...Array(count)].map(() => part);
 }
 
