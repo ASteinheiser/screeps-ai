@@ -43,12 +43,20 @@ export const findTargetsForDeposit = (creep: Creep) => {
     filter: (structure) => {
       return (structure.structureType === STRUCTURE_EXTENSION ||
               structure.structureType === STRUCTURE_SPAWN ||
+              structure.structureType === STRUCTURE_CONTAINER ||
               structure.structureType === STRUCTURE_TOWER) &&
               structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
     }
   });
-  // fill up extensions before spawn as the spawn will regenerate energy
-  return _.sortBy(structures, s => s.structureType === STRUCTURE_SPAWN ? 1 : 0);
+  // Deposit energy in structures with the following order:
+  // extensions -> spawn -> towers -> containers -> anything else
+  return _.sortBy(structures, ({ structureType }) => {
+    if (structureType === STRUCTURE_EXTENSION) return 0;
+    if (structureType === STRUCTURE_SPAWN) return 1;
+    if (structureType === STRUCTURE_TOWER) return 2;
+    if (structureType === STRUCTURE_CONTAINER) return 3;
+    return 4;
+  });
 }
 
 export const depositResource = (creep: Creep, target: Structure) => {
