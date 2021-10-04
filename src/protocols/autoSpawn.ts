@@ -9,7 +9,6 @@ interface AutoSpawnArgs {
 
 export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max }) => {
   const spawn = Game.spawns[spawnName];
-  const body = getHighestCostBody(spawn, [...Body[role]]);
 
   const creeps = _.filter(Game.creeps, ({ memory }) => (
     memory.role === role && memory.room === spawn.room.name
@@ -18,6 +17,7 @@ export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max }) => 
     console.log(role + 's: [' + creeps.length + '/' + max + ']');
   }
 
+  const body = getHighestCostBody(spawn, [...Body[role]]);
   if (body && creeps.length < max && !spawn.spawning) {
     spawnNewScreep(spawn, role, body);
   }
