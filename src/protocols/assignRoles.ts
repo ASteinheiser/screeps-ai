@@ -11,12 +11,13 @@ export const assignRoles: Protocol = () => {
     switch (creep.memory.role) {
       case Role.harvester:
         harvest(creep);
+        break;
       case Role.upgrader:
         upgrade(creep);
+        break;
       case Role.builder:
         build(creep);
-      default:
-        harvest(creep);
+        break;
     }
   }
   return true;
