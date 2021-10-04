@@ -1,6 +1,6 @@
 import { executeProtocols } from './protocol';
 import { assignRoles, autoSpawn, showSpawnMessages } from './protocols';
-import { Role } from './types';
+import { Role } from './roles';
 
 const executeColonyProtocol = () => {
   console.log('executing colony protocols...');

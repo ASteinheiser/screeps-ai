@@ -1,6 +1,6 @@
 import { ErrorMapper } from 'utils/ErrorMapper';
 import executeColonyProtocol from './executeColonyProtocol';
-import { Role } from './types';
+import { Role } from './roles';
 
 declare global {
   /*
