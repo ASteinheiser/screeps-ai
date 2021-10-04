@@ -24,8 +24,17 @@ export const harvest = (creep: Creep) => {
 export const findResource = (creep: Creep) => {
   const sources = creep.room.find(FIND_SOURCES);
   const sortedSources = _.sortBy(sources, s => creep.pos.getRangeTo(s));
-  if (creep.harvest(sortedSources[0]) === ERR_NOT_IN_RANGE) {
-      creep.moveTo(sortedSources[0], {visualizePathStyle: {stroke: PATH_COLOR}});
+  const source = findNearestSource(sortedSources);
+  if (creep.harvest(source) === ERR_NOT_IN_RANGE) {
+    creep.moveTo(source, {visualizePathStyle: {stroke: PATH_COLOR}});
+  }
+}
+
+const findNearestSource = (sources: Source[], index = 0): Source => {
+  if (sources[index].energy <= 0 && sources.length > index + 1) {
+    return findNearestSource(sources, index + 1);
+  } else {
+    return sources[index];
   }
 }
 
