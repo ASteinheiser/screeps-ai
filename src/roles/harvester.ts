@@ -23,8 +23,9 @@ export const harvest = (creep: Creep) => {
 
 export const findResource = (creep: Creep) => {
   const sources = creep.room.find(FIND_SOURCES);
-  if (creep.harvest(sources[0]) === ERR_NOT_IN_RANGE) {
-      creep.moveTo(sources[0], {visualizePathStyle: {stroke: PATH_COLOR}});
+  const sortedSources = _.sortBy(sources, s => creep.pos.getRangeTo(s));
+  if (creep.harvest(sortedSources[0]) === ERR_NOT_IN_RANGE) {
+      creep.moveTo(sortedSources[0], {visualizePathStyle: {stroke: PATH_COLOR}});
   }
 }
 
