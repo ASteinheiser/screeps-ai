@@ -12,7 +12,9 @@ export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max, bodyN
   const spawn = Game.spawns[spawnName];
   const body = getHighestCostBody(spawn, [...Body[bodyName]]);
 
-  const creeps = _.filter(Game.creeps, (creep) => creep.memory.role === role);
+  const creeps = _.filter(Game.creeps, ({ memory }) => (
+    memory.role === role && memory.room === spawn.room.name
+  ));
   if (creeps.length <= max) {
     console.log(role + 's: [' + creeps.length + '/' + max + ']');
   }
