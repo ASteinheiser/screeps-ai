@@ -1,4 +1,4 @@
-import { Role, BodyParts } from '../roles';
+import { Role, BodyParts, MAX_CREEP_COST } from '../roles';
 import { Protocol } from '../protocol';
 
 interface AutoSpawnArgs {
@@ -9,8 +9,6 @@ interface AutoSpawnArgs {
 
 export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max }) => {
   const spawn = Game.spawns[spawnName];
-  const controllerLevel = spawn.room.controller?.level ?? 0;
-
   const creeps = _.filter(Game.creeps, ({ memory }) => (
     memory.role === role && memory.room === spawn.room.name
   ));
@@ -18,7 +16,9 @@ export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max }) => 
     console.log(role + 's: [' + creeps.length + '/' + max + ']');
   }
 
-  const body = BodyParts[role][controllerLevel];
+  const controllerLevel = spawn.room.controller?.level ?? 0;
+  const maxEnergy = spawn.room.energyCapacityAvailable;
+  const body = getBodyParts(role, controllerLevel, maxEnergy);
   if (body && creeps.length < max && !spawn.spawning) {
     spawnNewScreep(spawn, role, body);
   }
@@ -34,3 +34,15 @@ const spawnNewScreep = (spawn: StructureSpawn, role: Role, body: BodyPartConstan
     console.log('Spawning new ' + role + ': ' + name);
   }
 }
+
+const getBodyParts = (
+  role: Role,
+  controllerLevel: number,
+  maxEnergy: number
+): BodyPartConstant[] => {
+  if (maxEnergy < MAX_CREEP_COST[controllerLevel]) {
+    return getBodyParts(role, controllerLevel - 1, maxEnergy);
+  } else {
+    return BodyParts[role][controllerLevel];
+  }
+};
