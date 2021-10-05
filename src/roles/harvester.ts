@@ -58,8 +58,8 @@ export const findTargetsForDeposit = (creep: Creep) => {
   // Deposit energy in structures with the following order:
   // extensions -> spawn -> towers -> containers -> anything else
   return _.sortBy(structures, ({ structureType }) => {
-    if (structureType === STRUCTURE_TOWER) return 0;
-    if (structureType === STRUCTURE_EXTENSION) return 1;
+    if (structureType === STRUCTURE_EXTENSION) return 0;
+    if (structureType === STRUCTURE_TOWER) return 1;
     if (structureType === STRUCTURE_SPAWN) return 2;
     if (structureType === STRUCTURE_CONTAINER) return 3;
     if (structureType === STRUCTURE_STORAGE) return 4;
