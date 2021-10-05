@@ -50,6 +50,7 @@ export const findTargetsForDeposit = (creep: Creep) => {
       return (structure.structureType === STRUCTURE_EXTENSION ||
               structure.structureType === STRUCTURE_SPAWN ||
               structure.structureType === STRUCTURE_CONTAINER ||
+              structure.structureType === STRUCTURE_STORAGE ||
               structure.structureType === STRUCTURE_TOWER) &&
               structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0;
     }
@@ -61,7 +62,8 @@ export const findTargetsForDeposit = (creep: Creep) => {
     if (structureType === STRUCTURE_EXTENSION) return 1;
     if (structureType === STRUCTURE_SPAWN) return 2;
     if (structureType === STRUCTURE_CONTAINER) return 3;
-    return 4;
+    if (structureType === STRUCTURE_STORAGE) return 4;
+    return 5;
   });
 }
 
