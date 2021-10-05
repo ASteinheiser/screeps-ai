@@ -5,11 +5,18 @@ export const towerActions = (tower: StructureTower) => {
     return;
   }
 
-  const closestDamagedStructure = tower.pos.findClosestByRange(FIND_STRUCTURES, {
-    filter: (structure) => structure.hits < structure.hitsMax
+  const damagedWalls = tower.room.find(FIND_STRUCTURES, {
+    filter: (structure) => {
+      if (structure.structureType === STRUCTURE_WALL) {
+        return structure.hits < structure.hitsMax;
+      }
+      return false;
+    }
   });
-  if (closestDamagedStructure) {
-    tower.repair(closestDamagedStructure);
+  const sortedWalls = _.sortBy(damagedWalls, s => s.hits);
+
+  if (sortedWalls.length > 0) {
+    tower.repair(sortedWalls[0]);
     return;
   }
 }
