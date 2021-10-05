@@ -22,12 +22,17 @@ export const assignRoles: Protocol = () => {
         upgrade(creep);
         break;
       case Role.builder:
-        if (!roomsWithSites[creep.room.name]) {
+        if (roomsWithSites[creep.room.name]) {
+          build(creep);
+          break;
+        }
+        if (roomsWithMaxEnergy[creep.room.name]) {
+          upgrade(creep);
+          break;
+        } else {
           harvest(creep);
           break;
         }
-        build(creep);
-        break;
     }
   }
   return true;
