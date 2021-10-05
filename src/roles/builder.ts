@@ -21,7 +21,8 @@ export const build = (creep: Creep) => {
 
 const buildStructure = (creep: Creep) => {
   const targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-  if (targets.length && creep.build(targets[0]) === ERR_NOT_IN_RANGE) {
-    creep.moveTo(targets[0], {visualizePathStyle: {stroke: PATH_COLOR}});
+  const sortedTargets = _.sortBy(targets, t => creep.pos.getRangeTo(t));
+  if (sortedTargets.length > 0 && creep.build(sortedTargets[0]) === ERR_NOT_IN_RANGE) {
+    creep.moveTo(sortedTargets[0], {visualizePathStyle: {stroke: PATH_COLOR}});
   }
 }
