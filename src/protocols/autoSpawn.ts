@@ -9,6 +9,8 @@ interface AutoSpawnArgs {
 
 export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max }) => {
   const spawn = Game.spawns[spawnName];
+  const controllerLevel = spawn.room.controller?.level ?? 0;
+
   const creeps = _.filter(Game.creeps, ({ memory }) => (
     memory.role === role && memory.room === spawn.room.name
   ));
@@ -16,11 +18,17 @@ export const autoSpawn: Protocol<AutoSpawnArgs> = ({ spawnName, role, max }) => 
     console.log(role + 's: [' + creeps.length + '/' + max + ']');
   }
 
-  const controllerLevel = spawn.room.controller?.level ?? 0;
-  const maxEnergy = spawn.room.energyCapacityAvailable;
-  const body = getBodyParts(role, controllerLevel, maxEnergy);
-  if (body && creeps.length < max && !spawn.spawning) {
-    spawnNewScreep(spawn, role, body);
+  // case for when all harvesters die
+  if (role === Role.harvester && creeps.length <= 0 && !spawn.spawning) {
+    const currentEnergy = spawn.room.energyAvailable;
+    const body = getBodyParts(role, controllerLevel, currentEnergy);
+    if (body) spawnNewScreep(spawn, role, body);
+  }
+
+  if (creeps.length < max && !spawn.spawning) {
+    const maxEnergy = spawn.room.energyCapacityAvailable;
+    const body = getBodyParts(role, controllerLevel, maxEnergy);
+    if (body) spawnNewScreep(spawn, role, body);
   }
 
   return creeps.length >= max;
