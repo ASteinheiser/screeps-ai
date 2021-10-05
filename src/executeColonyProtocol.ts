@@ -17,10 +17,6 @@ const executeColonyProtocol = () => {
       () => autoSpawn({ spawnName, role: Role.harvester, max: 3 }),
       () => autoSpawn({ spawnName, role: Role.builder, max: 3 }),
       () => autoSpawn({ spawnName, role: Role.upgrader, max: 3 }),
-
-      () => autoSpawn({ spawnName, role: Role.harvester, max: 4 }),
-      () => autoSpawn({ spawnName, role: Role.builder, max: 4 }),
-      () => autoSpawn({ spawnName, role: Role.upgrader, max: 4 }),
     ]);
   }
 
