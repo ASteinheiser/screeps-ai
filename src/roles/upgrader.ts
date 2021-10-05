@@ -5,16 +5,16 @@ const PATH_COLOR = '#ffaa00';
 export const upgrade = (creep: Creep) => {
   if (creep.memory.working && creep.store.getUsedCapacity() === 0) {
     creep.memory.working = false;
-    creep.say('⛏️ harvest');
   }
   if (!creep.memory.working && creep.store.getFreeCapacity() === 0) {
     creep.memory.working = true;
-    creep.say('⚡ upgrade');
   }
 
   if (creep.memory.working) {
+    creep.say('⚡');
     upgradeController(creep);
   } else {
+    creep.say('⛏️');
     findResource(creep);
   }
 }

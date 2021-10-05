@@ -3,17 +3,17 @@ const PATH_COLOR = '#ffea00';
 export const harvest = (creep: Creep) => {
   if (creep.memory.working && creep.store.getFreeCapacity() === 0) {
     creep.memory.working = false;
-    creep.say('🗑️ deposit');
   }
   if (!creep.memory.working && creep.store.getUsedCapacity() === 0) {
     creep.memory.working = true;
-    creep.say('⛏️ harvest');
   }
 
   if (creep.memory.working) {
+    creep.say('⛏️');
     findResource(creep);
   }
   else {
+    creep.say('🗑️');
     const targets = findTargetsForDeposit(creep);
     if (targets.length > 0) {
       depositResource(creep, targets[0]);
