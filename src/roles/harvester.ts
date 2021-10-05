@@ -22,6 +22,12 @@ export const harvest = (creep: Creep) => {
 }
 
 export const findResource = (creep: Creep) => {
+  const droppedEnergy = creep.room.find(FIND_DROPPED_RESOURCES).filter(r => r.resourceType === RESOURCE_ENERGY);
+  if (droppedEnergy.length > 0 && creep.pickup(droppedEnergy[0]) === ERR_NOT_IN_RANGE) {
+    creep.moveTo(droppedEnergy[0], {visualizePathStyle: {stroke: PATH_COLOR}});
+    return;
+  }
+
   const sources = creep.room.find(FIND_SOURCES);
   const sortedSources = _.sortBy(sources, s => creep.pos.getRangeTo(s));
   const source = findNearestSource(sortedSources);
