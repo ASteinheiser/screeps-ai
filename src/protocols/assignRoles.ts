@@ -5,12 +5,17 @@ export const assignRoles: Protocol = () => {
   console.log('assigning roles...');
 
   const roomsWithSites = getRoomsWithBuildSites();
+  const roomsWithMaxEnergy = getRoomsWithMaxEnergy();
 
   for (const name in Game.creeps) {
     const creep = Game.creeps[name];
 
     switch (creep.memory.role) {
       case Role.harvester:
+        if (roomsWithMaxEnergy[creep.room.name]) {
+          upgrade(creep);
+          break;
+        }
         harvest(creep);
         break;
       case Role.upgrader:
@@ -35,4 +40,15 @@ const getRoomsWithBuildSites = () => {
     if (room) roomsWithBuildSites[room.name] = true;
   }
   return roomsWithBuildSites;
+}
+
+const getRoomsWithMaxEnergy = () => {
+  const roomsWithMaxEnergy: Record<string, boolean> = {};
+  for (const name in Game.rooms) {
+    const room = Game.rooms[name];
+    if (room.energyAvailable === room.energyCapacityAvailable) {
+      roomsWithMaxEnergy[room.name] = true;
+    }
+  }
+  return roomsWithMaxEnergy;
 }
