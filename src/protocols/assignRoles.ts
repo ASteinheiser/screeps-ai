@@ -12,17 +12,8 @@ export const assignRoles: Protocol = () => {
 
     switch (creep.memory.role) {
       case Role.harvester:
-        if (!roomsWithMaxEnergy[creep.room.name]) {
-          harvest(creep);
-          break;
-        }
-        if (roomsWithSites[creep.room.name]) {
-          build(creep);
-          break;
-        } else {
-          upgrade(creep);
-          break;
-        }
+        harvest(creep);
+        break;
       case Role.upgrader:
         upgrade(creep);
         break;
